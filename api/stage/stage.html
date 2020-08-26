@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Stage &mdash; PyMoa  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Delay Stage" href="delay.html" />
+    <link rel="prev" title="PyMoa Stage" href="api.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> PyMoa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">The PyMoa API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pymoa.html">PyMoa</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">PyMoa Stage</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Stage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delay.html">Delay Stage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gate.html">Device gated stage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../device/api.html">PyMoa Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../base.html">Base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_logger.html">Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">Utilities</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyMoa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">The PyMoa API</a> &raquo;</li>
+        
+          <li><a href="api.html">PyMoa Stage</a> &raquo;</li>
+        
+      <li>Stage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/stage/stage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-pymoa.stage"></span><div class="section" id="stage">
+<h1>Stage<a class="headerlink" href="#stage" title="Permalink to this headline">¶</a></h1>
+<p>A stage is fundamental to an experiment. A stage typically describes an epoch
+during an experiment when something happens or when we wait for something to
+happen. An experiment is composed of many stages.</p>
+<p>A stage can contain other stages.</p>
+<dl class="py class">
+<dt id="pymoa.stage.MoaStage">
+<em class="property">class </em><code class="sig-prename descclassname">pymoa.stage.</code><code class="sig-name descname">MoaStage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">repeat</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">max_duration</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">max_trial_duration</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">'serial'</span></em>, <em class="sig-param"><span class="n">complete_on</span><span class="o">=</span><span class="default_value">'all'</span></em>, <em class="sig-param"><span class="n">complete_on_whom</span><span class="o">=</span><span class="default_value">()</span></em>, <em class="sig-param"><span class="n">disabled</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.stage.MoaStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">kivy._event.EventDispatcher</span></code>, <a class="reference internal" href="../base.html#pymoa.base.MoaBase" title="pymoa.base.MoaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymoa.base.MoaBase</span></code></a></p>
+<p>Base stage for structuring an experiment.</p>
+<dl class="py method">
+<dt id="pymoa.stage.MoaStage.add_stage">
+<code class="sig-name descname">add_stage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stage</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#pymoa.stage.MoaStage" title="pymoa.stage.MoaStage">pymoa.stage.MoaStage</a></span></em>, <em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.stage.MoaStage.add_stage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Different than widget because of None.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pymoa.stage.MoaStage.complete_on">
+<code class="sig-name descname">complete_on</code><em class="property">: str</em><em class="property"> = 'all'</em><a class="headerlink" href="#pymoa.stage.MoaStage.complete_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>If parallel, whether it completes when any or all of its sub-stages
+are done. Can be <cite>all</cite>, <cite>any</cite>, or a list-type of child and self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pymoa.stage.MoaStage.complete_on_whom">
+<code class="sig-name descname">complete_on_whom</code><em class="property">: List<span class="p">[</span><a class="reference internal" href="#pymoa.stage.MoaStage" title="pymoa.stage.MoaStage">pymoa.stage.MoaStage</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#pymoa.stage.MoaStage.complete_on_whom" title="Permalink to this definition">¶</a></dt>
+<dd><p>If parallel, whether it completes when any or all of its sub-stages
+are done. Can be <cite>all</cite>, <cite>any</cite>, or a list-type of child and self.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pymoa.stage.MoaStage.count">
+<code class="sig-name descname">count</code><em class="property">: int</em><em class="property"> = -1</em><a class="headerlink" href="#pymoa.stage.MoaStage.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zero is the first etc. updated after the loop jumps back. read only</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pymoa.stage.MoaStage.disabled">
+<code class="sig-name descname">disabled</code><em class="property">: bool</em><em class="property"> = False</em><a class="headerlink" href="#pymoa.stage.MoaStage.disabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this stage is disabled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymoa.stage.MoaStage.init_stage">
+<em class="property">await </em><code class="sig-name descname">init_stage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.stage.MoaStage.init_stage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should take minimal time and must be called with <code class="docutils literal notranslate"><span class="pre">super</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymoa.stage.MoaStage.init_trial">
+<em class="property">await </em><code class="sig-name descname">init_trial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">i</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.stage.MoaStage.init_trial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should take minimal time and must be called with <code class="docutils literal notranslate"><span class="pre">super</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pymoa.stage.MoaStage.max_duration">
+<code class="sig-name descname">max_duration</code><em class="property">: float</em><em class="property"> = 0</em><a class="headerlink" href="#pymoa.stage.MoaStage.max_duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>If non zero, the total duration that this stage goes on. Including
+the loops and stage initialization, excluding <a class="reference internal" href="#pymoa.stage.MoaStage.stage_done" title="pymoa.stage.MoaStage.stage_done"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stage_done()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pymoa.stage.MoaStage.max_trial_duration">
+<code class="sig-name descname">max_trial_duration</code><em class="property">: float</em><em class="property"> = 0</em><a class="headerlink" href="#pymoa.stage.MoaStage.max_trial_duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>If non zero, the total duration that each trial goes on. Including
+the trial initialization but excluding <a class="reference internal" href="#pymoa.stage.MoaStage.trial_done" title="pymoa.stage.MoaStage.trial_done"><code class="xref py py-meth docutils literal notranslate"><span class="pre">trial_done()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pymoa.stage.MoaStage.order">
+<code class="sig-name descname">order</code><em class="property">: str</em><em class="property"> = 'serial'</em><a class="headerlink" href="#pymoa.stage.MoaStage.order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether sub-stages are run at same time or one after the other.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pymoa.stage.MoaStage.parent">
+<code class="sig-name descname">parent</code><em class="property">: <a class="reference internal" href="#pymoa.stage.MoaStage" title="pymoa.stage.MoaStage">pymoa.stage.MoaStage</a></em><em class="property"> = None</em><a class="headerlink" href="#pymoa.stage.MoaStage.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parent of this widget.</p>
+<p><a class="reference internal" href="#pymoa.stage.MoaStage.parent" title="pymoa.stage.MoaStage.parent"><code class="xref py py-attr docutils literal notranslate"><span class="pre">parent</span></code></a> is an <a class="reference external" href="https://kivy.org/doc/stable/api-kivy.properties.html#kivy.properties.ObjectProperty" title="(in Kivy v1.11.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectProperty</span></code></a> and
+defaults to None.</p>
+<p>The parent of a widget is set when the widget is added to another widget
+and unset when the widget is removed from its parent.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pymoa.stage.MoaStage.repeat">
+<code class="sig-name descname">repeat</code><em class="property">: int</em><em class="property"> = 1</em><a class="headerlink" href="#pymoa.stage.MoaStage.repeat" title="Permalink to this definition">¶</a></dt>
+<dd><p>1 is once, -1 is indefinitely.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymoa.stage.MoaStage.stage_done">
+<em class="property">await </em><code class="sig-name descname">stage_done</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">exception</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">canceled</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.stage.MoaStage.stage_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Canceled means that cancel was called for this specific stage
+and it ended early.</p>
+<p>Called under a shielded cancel scope.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pymoa.stage.MoaStage.stages">
+<code class="sig-name descname">stages</code><em class="property">: List<span class="p">[</span><a class="reference internal" href="#pymoa.stage.MoaStage" title="pymoa.stage.MoaStage">pymoa.stage.MoaStage</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#pymoa.stage.MoaStage.stages" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of children <a class="reference internal" href="#pymoa.stage.MoaStage" title="pymoa.stage.MoaStage"><code class="xref py py-class docutils literal notranslate"><span class="pre">MoaStage</span></code></a> instance. When a stage is started,
+it’s children stages are also started with the exact details depending on
+the <a class="reference internal" href="#pymoa.stage.MoaStage.order" title="pymoa.stage.MoaStage.order"><code class="xref py py-attr docutils literal notranslate"><span class="pre">order</span></code></a>.</p>
+<p>Similarly, a stage is considred finished when its children stages
+are done and when its loops are done, depending on</p>
+<p>It is read only. To modify, call <a class="reference internal" href="#pymoa.stage.MoaStage.add_stage" title="pymoa.stage.MoaStage.add_stage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stage()</span></code></a> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_stage()</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymoa.stage.MoaStage.stop_trial">
+<code class="sig-name descname">stop_trial</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.stage.MoaStage.stop_trial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Continues the next trial.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymoa.stage.MoaStage.trial_done">
+<em class="property">await </em><code class="sig-name descname">trial_done</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">exception</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">canceled</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.stage.MoaStage.trial_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Canceled means that cancel was called for this specific stage and
+trial, or it timed out, or the complete_on_whom caused it to exit.</p>
+<p>Called under a shielded cancel scope.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="delay.html" class="btn btn-neutral float-right" title="Delay Stage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api.html" class="btn btn-neutral float-left" title="PyMoa Stage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Einhorn
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

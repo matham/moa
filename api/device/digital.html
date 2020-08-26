@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Digital Port &mdash; PyMoa  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Analog Port" href="analog.html" />
+    <link rel="prev" title="Channel Devices" href="port.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> PyMoa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">The PyMoa API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pymoa.html">PyMoa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stage/api.html">PyMoa Stage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">PyMoa Device</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="device.html">Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="port.html">Channel Devices</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Digital Port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analog.html">Analog Port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adc.html">ADC Device</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../base.html">Base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_logger.html">Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">Utilities</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyMoa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">The PyMoa API</a> &raquo;</li>
+        
+          <li><a href="api.html">PyMoa Device</a> &raquo;</li>
+        
+      <li>Digital Port</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/device/digital.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-pymoa.device.digital"></span><div class="section" id="digital-port">
+<h1>Digital Port<a class="headerlink" href="#digital-port" title="Permalink to this headline">¶</a></h1>
+<p>Instances of <a class="reference internal" href="port.html#module-pymoa.device.port" title="pymoa.device.port"><code class="xref py py-mod docutils literal notranslate"><span class="pre">port</span></code></a> that represent Digital devices.</p>
+<dl class="py class">
+<dt id="pymoa.device.digital.DigitalChannel">
+<em class="property">class </em><code class="sig-prename descclassname">pymoa.device.digital.</code><code class="sig-name descname">DigitalChannel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.DigitalChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="port.html#pymoa.device.port.Channel" title="pymoa.device.port.Channel"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymoa.device.port.Channel</span></code></a></p>
+<p>A abstract single channel digital device.</p>
+<dl class="py attribute">
+<dt id="pymoa.device.digital.DigitalChannel.state">
+<code class="sig-name descname">state</code><em class="property">: Optional<span class="p">[</span>bool<span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#pymoa.device.digital.DigitalChannel.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state of the channel.</p>
+<p><a class="reference internal" href="#pymoa.device.digital.DigitalChannel.state" title="pymoa.device.digital.DigitalChannel.state"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state</span></code></a> is a <a class="reference external" href="https://kivy.org/doc/stable/api-kivy.properties.html#kivy.properties.BooleanProperty" title="(in Kivy v1.11.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanProperty</span></code></a> and
+defaults to None.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymoa.device.digital.DigitalChannel.write_state">
+<em class="property">await </em><code class="sig-name descname">write_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">state</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.DigitalChannel.write_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>A stub method defining the prototype for <a class="reference internal" href="#pymoa.device.digital.DigitalChannel.write_state" title="pymoa.device.digital.DigitalChannel.write_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_state()</span></code></a> of
+derived classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><cite>state</cite>: bool</dt><dd><p>The value to set the state to.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When called, it raises a <cite>NotImplementedError</cite> if not overwritten.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pymoa.device.digital.DigitalPort">
+<em class="property">class </em><code class="sig-prename descclassname">pymoa.device.digital.</code><code class="sig-name descname">DigitalPort</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.DigitalPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="port.html#pymoa.device.port.Port" title="pymoa.device.port.Port"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymoa.device.port.Port</span></code></a></p>
+<p>A abstract multi-channel digital device.</p>
+<dl class="py method">
+<dt id="pymoa.device.digital.DigitalPort.write_state">
+<em class="property">await </em><code class="sig-name descname">write_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">state</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.DigitalPort.write_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>A abstract method for setting the state. See <code class="xref py py-class docutils literal notranslate"><span class="pre">ChannelBase</span></code>
+for details.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If supported, the method needs to be overwritten by a base class
+otherwise, it raises a <cite>NotImplementedError</cite>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymoa.device.digital.DigitalPort.write_states">
+<em class="property">await </em><code class="sig-name descname">write_states</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">high</span><span class="p">:</span> <span class="n">Iterable<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">low</span><span class="p">:</span> <span class="n">Iterable<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.DigitalPort.write_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>A stub method defining the prototype for <a class="reference internal" href="#pymoa.device.digital.DigitalPort.write_state" title="pymoa.device.digital.DigitalPort.write_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_state()</span></code></a> of
+derived classes.</p>
+<p>For devices that support it, the properties passed in <cite>high</cite> and <cite>low</cite>
+can be set to the requested state simultaneously.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><cite>high</cite>: list</dt><dd><p>A list of the names of the properties to set to high (True)</p>
+</dd>
+<dt><cite>low</cite>: list</dt><dd><p>A list of the names of the properties to set to low (False)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When called, it raises a <cite>NotImplementedError</cite> if not overwritten.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pymoa.device.digital.RandomDigitalChannel">
+<em class="property">class </em><code class="sig-prename descclassname">pymoa.device.digital.</code><code class="sig-name descname">RandomDigitalChannel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.RandomDigitalChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pymoa.device.digital.DigitalChannel" title="pymoa.device.digital.DigitalChannel"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymoa.device.digital.DigitalChannel</span></code></a></p>
+<p>A channel that generates random digital values. Mainly useful as a
+testing device.</p>
+<dl class="py method">
+<dt id="pymoa.device.digital.RandomDigitalChannel.read_state">
+<em class="property">await </em><code class="sig-name descname">read_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.RandomDigitalChannel.read_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>A abstract method causing a read of the state. This method should
+not return the state, but rather cause the device to read the state
+and update the appropriate instance property with the current state.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If supported, the method needs to be overwritten by a base class
+otherwise, it raises a <cite>NotImplementedError</cite>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymoa.device.digital.RandomDigitalChannel.write_state">
+<em class="property">await </em><code class="sig-name descname">write_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">state</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.RandomDigitalChannel.write_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>A stub method defining the prototype for <a class="reference internal" href="#pymoa.device.digital.RandomDigitalChannel.write_state" title="pymoa.device.digital.RandomDigitalChannel.write_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_state()</span></code></a> of
+derived classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><cite>state</cite>: bool</dt><dd><p>The value to set the state to.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When called, it raises a <cite>NotImplementedError</cite> if not overwritten.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pymoa.device.digital.RandomDigitalPort">
+<em class="property">class </em><code class="sig-prename descclassname">pymoa.device.digital.</code><code class="sig-name descname">RandomDigitalPort</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.RandomDigitalPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pymoa.device.digital.DigitalPort" title="pymoa.device.digital.DigitalPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymoa.device.digital.DigitalPort</span></code></a></p>
+<p>A port that generates random digital values. Mainly useful as a
+testing device.</p>
+<dl class="py method">
+<dt id="pymoa.device.digital.RandomDigitalPort.read_state">
+<em class="property">await </em><code class="sig-name descname">read_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.RandomDigitalPort.read_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>A abstract method causing a read of the state. This method should
+not return the state, but rather cause the device to read the state
+and update the appropriate instance property with the current state.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If supported, the method needs to be overwritten by a base class
+otherwise, it raises a <cite>NotImplementedError</cite>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymoa.device.digital.RandomDigitalPort.write_states">
+<em class="property">await </em><code class="sig-name descname">write_states</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>bool<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.digital.RandomDigitalPort.write_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>A stub method defining the prototype for <code class="xref py py-meth docutils literal notranslate"><span class="pre">write_state()</span></code> of
+derived classes.</p>
+<p>For devices that support it, the properties passed in <cite>high</cite> and <cite>low</cite>
+can be set to the requested state simultaneously.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><cite>high</cite>: list</dt><dd><p>A list of the names of the properties to set to high (True)</p>
+</dd>
+<dt><cite>low</cite>: list</dt><dd><p>A list of the names of the properties to set to low (False)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When called, it raises a <cite>NotImplementedError</cite> if not overwritten.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="analog.html" class="btn btn-neutral float-right" title="Analog Port" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="port.html" class="btn btn-neutral float-left" title="Channel Devices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Einhorn
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

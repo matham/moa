@@ -1,0 +1,856 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started &mdash; PyMoa  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The PyMoa API" href="api/api.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> PyMoa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#framework">Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stage">Stage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device">Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remote-execution">Remote Execution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#remote-clock">Remote clock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-experiment">Running the experiment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/api.html">The PyMoa API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyMoa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Getting Started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>PyMoa is a framework for describing and running experiments using local or remote devices.</p>
+<p>It is composed of stages that determine the flow of an experiment, devices that interface with arbitrary hardware or
+software devices, loggers that automatically log all stage or device state changes, and executors
+that can run arbitrary devices on different threads, process, or even remote servers such as on a Raspberry-pi with
+minimal code changes.</p>
+<p>PyMoa re-uses existing libraries where possible. In particular:</p>
+<ul class="simple">
+<li><p>The <strong>amazing</strong> <a class="reference external" href="https://trio.readthedocs.io/en/stable/">trio</a> library for all concurrency and event loops
+(running stages, devices, interfacing with threads) and its socket interface (both client and server side).</p></li>
+<li><p><a class="reference external" href="https://asks.readthedocs.io/en/latest/">asks</a> for making client side requests over the rest api.</p></li>
+<li><p><a class="reference external" href="https://trio-websocket.readthedocs.io/en/stable/">trio-websocket</a> for making client side requests over
+the websocket api.</p></li>
+<li><p><a class="reference external" href="https://pgjones.gitlab.io/quart/">Quart</a> and <a class="reference external" href="https://gitlab.com/pgjones/quart-trio/">quart-trio</a> for the
+server-side rest-api and websockets.</p></li>
+<li><p><a class="reference external" href="https://kivy.org/#home">Kivy</a> for event and property dispatching in response to data and stage updates.</p></li>
+</ul>
+</div>
+<div class="section" id="framework">
+<h2>Framework<a class="headerlink" href="#framework" title="Permalink to this headline">¶</a></h2>
+<p>The following introduction walks through the basic PyMoa components. <a class="reference external" href="https://github.com/matham/pymoa/blob/master/examples/intro_example.py">The complete example can be found here</a>.</p>
+<div class="section" id="stage">
+<h3>Stage<a class="headerlink" href="#stage" title="Permalink to this headline">¶</a></h3>
+<p>PyMoa describes an experiment using hierarchies of <a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage" title="pymoa.stage.MoaStage"><code class="xref py py-class docutils literal notranslate"><span class="pre">MoaStage</span></code></a> instances.
+For example the following experiment</p>
+<ol class="arabic simple">
+<li><p>Wait for 20 seconds, then repeats the following 2 times;</p>
+<ol class="arabic simple">
+<li><p>Waits for a photo-beam to break (by going high),</p></li>
+<li><p>Releases a sugar pallet (by motor port driven high for 200ms),</p></li>
+<li><p>Wait for a 20 second - 40 second inter-trial interval</p></li>
+</ol>
+</li>
+<li><p>Waits for 15 seconds</p></li>
+</ol>
+<p>Can be described in pseudo-code as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MoaStage</span><span class="p">:</span>
+    <span class="n">Delay</span><span class="p">:</span>
+        <span class="n">delay</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">MoaStage</span><span class="p">:</span>
+        <span class="n">repeat</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">DigitalGateStage</span><span class="p">:</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="n">photo_bream_device</span>
+            <span class="n">exit_state</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">Delay</span><span class="p">:</span>
+            <span class="n">motor_device</span><span class="o">.</span><span class="n">set_channel</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">delay</span> <span class="o">=</span> <span class="mf">0.2</span>
+        <span class="n">UniformRandomDelay</span><span class="p">:</span>
+            <span class="nb">min</span> <span class="o">=</span> <span class="mi">20</span>
+            <span class="nb">max</span> <span class="o">=</span> <span class="mi">40</span>
+    <span class="n">Delay</span><span class="p">:</span>
+        <span class="n">delay</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+<p>In real code, this experiment structure would be implemented as:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SugarPalletStage</span><span class="p">(</span><span class="n">MoaStage</span><span class="p">):</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">motor_device</span><span class="o">.</span><span class="n">write_state</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">trio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">motor_device</span><span class="o">.</span><span class="n">write_state</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">MoaStage</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Root stage&#39;</span><span class="p">)</span>
+<span class="n">trial</span> <span class="o">=</span> <span class="n">MoaStage</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Trial&#39;</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">root</span><span class="o">.</span><span class="n">add_stage</span><span class="p">(</span><span class="n">Delay</span><span class="p">(</span><span class="n">delay</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Habituation&#39;</span><span class="p">))</span>
+<span class="n">root</span><span class="o">.</span><span class="n">add_stage</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">add_stage</span><span class="p">(</span><span class="n">Delay</span><span class="p">(</span><span class="n">delay</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;post delay&#39;</span><span class="p">))</span>
+
+<span class="n">trial</span><span class="o">.</span><span class="n">add_stage</span><span class="p">(</span><span class="n">DigitalGateStage</span><span class="p">(</span>
+    <span class="n">device</span><span class="o">=</span><span class="n">photo_bream_device</span><span class="p">,</span> <span class="n">exit_state</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;photobeam_stage&#39;</span><span class="p">))</span>
+<span class="n">trial</span><span class="o">.</span><span class="n">add_stage</span><span class="p">(</span><span class="n">SugarPalletStage</span><span class="p">(</span>
+    <span class="n">motor_device</span><span class="o">=</span><span class="n">motor_device</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sugar pallet stage&#39;</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">trial</span><span class="o">.</span><span class="n">add_stage</span><span class="p">(</span><span class="n">UniformRandomDelay</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ITI&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The experiment would then be run using <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">root.run_stage()</span></code>, which executes all the stages.</p>
+<p>A <a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage" title="pymoa.stage.MoaStage"><code class="xref py py-class docutils literal notranslate"><span class="pre">MoaStage</span></code></a> will perform an action when each of its trials are run.
+The stage will then <a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage.repeat" title="pymoa.stage.MoaStage.repeat"><code class="xref py py-attr docutils literal notranslate"><span class="pre">repeat</span></code></a> the stage’s action for each trial. Simultaneously, for each trial,
+the stage will execute its sub-<a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage.stages" title="pymoa.stage.MoaStage.stages"><code class="xref py py-attr docutils literal notranslate"><span class="pre">stages</span></code></a> serially or in parallel as specified by
+<a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage.order" title="pymoa.stage.MoaStage.order"><code class="xref py py-attr docutils literal notranslate"><span class="pre">order</span></code></a>. <a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage.complete_on" title="pymoa.stage.MoaStage.complete_on"><code class="xref py py-attr docutils literal notranslate"><span class="pre">complete_on</span></code></a> and
+<a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage.complete_on_whom" title="pymoa.stage.MoaStage.complete_on_whom"><code class="xref py py-attr docutils literal notranslate"><span class="pre">complete_on_whom</span></code></a> help determine when a trial is complete so it can be repeated again
+or complete the stage when the trial <a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage.count" title="pymoa.stage.MoaStage.count"><code class="xref py py-attr docutils literal notranslate"><span class="pre">count</span></code></a> is done.</p>
+<p>The action performed by the stage is customized by overwriting (and calling <code class="docutils literal notranslate"><span class="pre">super</span></code> within) these methods:
+<a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage.init_stage" title="pymoa.stage.MoaStage.init_stage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_stage()</span></code></a>, <a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage.init_trial" title="pymoa.stage.MoaStage.init_trial"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_trial()</span></code></a>,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">do_trial()</span></code>, <a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage.trial_done" title="pymoa.stage.MoaStage.trial_done"><code class="xref py py-meth docutils literal notranslate"><span class="pre">trial_done()</span></code></a>,
+<a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage.stage_done" title="pymoa.stage.MoaStage.stage_done"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stage_done()</span></code></a>. Other methods and events are also available for further customization.</p>
+<p>Some example stages are the <a class="reference internal" href="api/stage/delay.html#pymoa.stage.delay.Delay" title="pymoa.stage.delay.Delay"><code class="xref py py-class docutils literal notranslate"><span class="pre">Delay</span></code></a> stage that waits for specified delay and the
+<a class="reference internal" href="api/stage/gate.html#pymoa.stage.gate.GateStage" title="pymoa.stage.gate.GateStage"><code class="xref py py-class docutils literal notranslate"><span class="pre">GateStage</span></code></a> which waits until the specified device condition is met.</p>
+</div>
+<div class="section" id="device">
+<h3>Device<a class="headerlink" href="#device" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="api/device/device.html#pymoa.device.Device" title="pymoa.device.Device"><code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code></a> base class is the interface to interact with input/output devices. Generally they
+store the current device state as a property of the device (e.g. the state of a digital channel).
+Whenever the device is updated, it dispatches the <code class="docutils literal notranslate"><span class="pre">on_data_update</span></code> event to signal to listeners that
+the device’s state was updated.</p>
+<p><a class="reference internal" href="api/device/port.html#module-pymoa.device.port" title="pymoa.device.port"><code class="xref py py-mod docutils literal notranslate"><span class="pre">port</span></code></a> defines some additional interfaces for channels and channel ports.
+<a class="reference internal" href="api/device/digital.html#module-pymoa.device.digital" title="pymoa.device.digital"><code class="xref py py-mod docutils literal notranslate"><span class="pre">digital</span></code></a> and <a class="reference internal" href="api/device/analog.html#module-pymoa.device.analog" title="pymoa.device.analog"><code class="xref py py-mod docutils literal notranslate"><span class="pre">analog</span></code></a> provide further interfaces for interacting with digital and
+analog devices, respectively. <a class="reference internal" href="api/device/adc.html#module-pymoa.device.adc" title="pymoa.device.adc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">adc</span></code></a> provides a interface for an ADC device. These interfaces
+are example implementations to be customized.</p>
+<p>For the above experiment, we create a virtual photobeam sensor and sugar pallet delivering device by implementing
+<a class="reference internal" href="api/device/digital.html#pymoa.device.digital.DigitalChannel" title="pymoa.device.digital.DigitalChannel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DigitalChannel</span></code></a> as follows:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VirtualDevice</span><span class="p">(</span><span class="n">DigitalChannel</span><span class="p">):</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">write_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="s1">&#39;on_data_update&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">pump_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">trio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_state</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">photo_bream_device</span> <span class="o">=</span> <span class="n">VirtualDevice</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;photobeam_device&#39;</span><span class="p">)</span>
+<span class="n">motor_device</span> <span class="o">=</span> <span class="n">VirtualDevice</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;motor_device&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">write_state</span></code> simply saves the state and triggers the update. This is simulating setting the channel to high or low
+(e.g. turning ON the motor). <code class="docutils literal notranslate"><span class="pre">pump_state</span></code> will continuously “read” the channel by randomly generating a high or low
+state for the channel.</p>
+</div>
+<div class="section" id="logging">
+<h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
+<p>Stages and devices support automatic logging of important properties through the <code class="xref py py-class docutils literal notranslate"><span class="pre">Loggable</span></code>
+interface. The interface provides a way to indicate which properties/events to log and what triggers the logging
+action. <a class="reference internal" href="api/stage/stage.html#pymoa.stage.MoaStage" title="pymoa.stage.MoaStage"><code class="xref py py-class docutils literal notranslate"><span class="pre">MoaStage</span></code></a> and <a class="reference internal" href="api/device/device.html#pymoa.device.Device" title="pymoa.device.Device"><code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code></a> includes this interface by default.</p>
+<p>Example loggers are <a class="reference internal" href="api/data_logger.html#pymoa.data_logger.SimpleCSVLogger" title="pymoa.data_logger.SimpleCSVLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleCSVLogger</span></code></a> and <a class="reference internal" href="api/data_logger.html#pymoa.data_logger.SimpleTerminalLogger" title="pymoa.data_logger.SimpleTerminalLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTerminalLogger</span></code></a>,
+which log the data to a csv file and to the terminal, respectively.</p>
+<p>For example, to log the experiment stages above, the following will associate the logger with the stages:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">logger</span> <span class="o">=</span> <span class="n">SimpleTerminalLogger</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">iterate_stages</span><span class="p">():</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">add_logged_instance</span><span class="p">(</span><span class="n">stage</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When the experiment is run, this will print the following to the terminal:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Printed output</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>index</p></th>
+<th class="head"><p>timestamp</p></th>
+<th class="head"><p>name</p></th>
+<th class="head"><p>trigger</p></th>
+<th class="head"><p>item</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0.6059512</p></td>
+<td><p>Root stage</p></td>
+<td><p>on_stage_start</p></td>
+<td><p>count</p></td>
+<td><p>-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0.6065675</p></td>
+<td><p>Root stage</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>0.6068585</p></td>
+<td><p>Habituation</p></td>
+<td><p>on_stage_start</p></td>
+<td><p>count</p></td>
+<td><p>-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.6071759</p></td>
+<td><p>Habituation</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>20.6083242</p></td>
+<td><p>Habituation</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>20.6085545</p></td>
+<td><p>Habituation</p></td>
+<td><p>on_stage_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>20.6087105</p></td>
+<td><p>Trial</p></td>
+<td><p>on_stage_start</p></td>
+<td><p>count</p></td>
+<td><p>-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>20.6091834</p></td>
+<td><p>Trial</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>20.60976</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>on_stage_start</p></td>
+<td><p>count</p></td>
+<td><p>-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>20.6101662</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>20.6122033</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>state</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>28.9837687</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>state</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>28.9841575</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>28.9843255</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>on_stage_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>28.9844328</p></td>
+<td><p>sugar pallet stage</p></td>
+<td><p>on_stage_start</p></td>
+<td><p>count</p></td>
+<td><p>-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>28.9847545</p></td>
+<td><p>sugar pallet stage</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>29.1881972</p></td>
+<td><p>sugar pallet stage</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>29.1883574</p></td>
+<td><p>sugar pallet stage</p></td>
+<td><p>on_stage_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>29.1884679</p></td>
+<td><p>ITI</p></td>
+<td><p>on_stage_start</p></td>
+<td><p>count</p></td>
+<td><p>-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>29.1888977</p></td>
+<td><p>ITI</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>50.6432094</p></td>
+<td><p>ITI</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>50.6432811</p></td>
+<td><p>ITI</p></td>
+<td><p>on_stage_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>50.6434171</p></td>
+<td><p>Trial</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>23</p></td>
+<td><p>50.6435501</p></td>
+<td><p>Trial</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>24</p></td>
+<td><p>50.6437013</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>on_stage_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>25</p></td>
+<td><p>50.6438246</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>26</p></td>
+<td><p>50.6439204</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>state</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>27</p></td>
+<td><p>56.7902294</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>state</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>28</p></td>
+<td><p>56.790501</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>29</p></td>
+<td><p>56.79059</p></td>
+<td><p>photobeam_stage</p></td>
+<td><p>on_stage_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>30</p></td>
+<td><p>56.7906541</p></td>
+<td><p>sugar pallet stage</p></td>
+<td><p>on_stage_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>31</p></td>
+<td><p>56.79086</p></td>
+<td><p>sugar pallet stage</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>32</p></td>
+<td><p>56.9954589</p></td>
+<td><p>sugar pallet stage</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>33</p></td>
+<td><p>56.9956666</p></td>
+<td><p>sugar pallet stage</p></td>
+<td><p>on_stage_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>34</p></td>
+<td><p>56.995809</p></td>
+<td><p>ITI</p></td>
+<td><p>on_stage_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>35</p></td>
+<td><p>56.9962146</p></td>
+<td><p>ITI</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>36</p></td>
+<td><p>80.2745445</p></td>
+<td><p>ITI</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>37</p></td>
+<td><p>80.2747385</p></td>
+<td><p>ITI</p></td>
+<td><p>on_stage_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>38</p></td>
+<td><p>80.2750996</p></td>
+<td><p>Trial</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>39</p></td>
+<td><p>80.2752385</p></td>
+<td><p>Trial</p></td>
+<td><p>on_stage_end</p></td>
+<td><p>count</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>40</p></td>
+<td><p>80.2753473</p></td>
+<td><p>post delay</p></td>
+<td><p>on_stage_start</p></td>
+<td><p>count</p></td>
+<td><p>-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>41</p></td>
+<td><p>80.2756924</p></td>
+<td><p>post delay</p></td>
+<td><p>on_trial_start</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>42</p></td>
+<td><p>95.2781586</p></td>
+<td><p>post delay</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>43</p></td>
+<td><p>95.278257</p></td>
+<td><p>post delay</p></td>
+<td><p>on_stage_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>44</p></td>
+<td><p>95.2784493</p></td>
+<td><p>Root stage</p></td>
+<td><p>on_trial_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>45</p></td>
+<td><p>95.2785226</p></td>
+<td><p>Root stage</p></td>
+<td><p>on_stage_end</p></td>
+<td><p>count</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="remote-execution">
+<h3>Remote Execution<a class="headerlink" href="#remote-execution" title="Permalink to this headline">¶</a></h3>
+<p>One the best components of this framework is the ability to execute and interface with devices that are remote
+to the system running the experiments. PyMoa implements some executor classes that help achieve this very simply.</p>
+<p>For example imagine instead of being able to set the state of the device above on our system, we needed to call the
+device over the network or in a different process or thread. E.g. this device represented a raspberry-pi so
+<code class="docutils literal notranslate"><span class="pre">write_state</span></code> needs to run on the pi. For the following example we’ll use a thread executor, but a socket or rest-api
+executor will work similarly.</p>
+<p>The device will now be adjusted as follows:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VirtualDevice</span><span class="p">(</span><span class="n">DigitalChannel</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">executor_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">return_value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">return_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="s1">&#39;on_data_update&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@apply_executor</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">executor_callback</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">write_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">perf_counter</span><span class="p">()</span>
+
+<span class="n">executor</span> <span class="o">=</span> <span class="n">ThreadExecutor</span><span class="p">()</span>
+<span class="n">photo_bream_device</span> <span class="o">=</span> <span class="n">VirtualDevice</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;photobeam_device&#39;</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">executor</span><span class="p">)</span>
+<span class="n">motor_device</span> <span class="o">=</span> <span class="n">VirtualDevice</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;motor_device&#39;</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">executor</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With this simple change, when we call it as follows <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">motor_device.write_state(True)</span></code>, <code class="docutils literal notranslate"><span class="pre">write_state</span></code> will be
+executed in a second thread and the result will be returned to us. In addition, the result will be passed to the
+callback provided in the decorator to apply the result generically as needed.</p>
+<p>Executing on e.g. a raspberry-pi is just as simple: instantiate the <code class="xref py py-mod docutils literal notranslate"><span class="pre">quart</span></code> server
+on the raspberry-pi. This will launch a server that can be communicated with using a nice rest api as well as more
+efficient websockets. And from the the client side, you’d simply do
+<code class="docutils literal notranslate"><span class="pre">executor</span> <span class="pre">=</span> <span class="pre">WebSocketExecutor(server='x.y.z.a',</span> <span class="pre">port=5000)</span></code> and everything else will mostly work the same as the threading
+example above. The only difference is that we’d also need to call <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">executor.ensure_remote_instance(motor_device)</span></code>
+to create the device on the pi, but afterwards calling <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">motor_device.write_state(True)</span></code> will execute the
+<code class="docutils literal notranslate"><span class="pre">write_state</span></code> on the pi and return the result to the client!!!</p>
+<div class="section" id="remote-clock">
+<h4>Remote clock<a class="headerlink" href="#remote-clock" title="Permalink to this headline">¶</a></h4>
+<p>Executors also support pinging the executor to return the current server time. By running this periodically we can
+estimate the lag to executing on the server, but more importantly, we can also align the server timestamped events
+to the local clock by doing a simple linear regression.</p>
+</div>
+<div class="section" id="performance">
+<h4>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h4>
+<p>Following is some basic performance data for the various implemented executors. The last two rows are when running
+on a server on the Raspberry-pi over WiFi:</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Performance data</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Executor</p></th>
+<th class="head"><p>Round-trip lag</p></th>
+<th class="head"><p>Execution Rate</p></th>
+<th class="head"><p>Continuous Execution rate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RestExecutor</p></td>
+<td><p>8.68ms</p></td>
+<td><p>95.36Hz</p></td>
+<td><p>1495.93Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>WebSocketExecutor</p></td>
+<td><p>2.20ms</p></td>
+<td><p>533.46Hz</p></td>
+<td><p>1104.19Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>MultiprocessSocketExecutor</p></td>
+<td><p>0.48ms</p></td>
+<td><p>1132.06Hz</p></td>
+<td><p>3144.60Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>ThreadExecutor</p></td>
+<td><p>0.45ms</p></td>
+<td><p>2789.56Hz</p></td>
+<td><p>5395.46Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>AsyncThreadExecutor</p></td>
+<td><p>1.16ms</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>DummyRemoteExecutor</p></td>
+<td><p>0.07ms</p></td>
+<td><p>10327.27Hz</p></td>
+<td><p>5739.54Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>none</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>246669.96Hz</p></td>
+<td><p>10018.94Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>RPi-RestExecutor</p></td>
+<td><p>16.56ms</p></td>
+<td><p>59.52Hz</p></td>
+<td><p>847.97Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>RPi-WebSocketExecutor</p></td>
+<td><p>6.14ms</p></td>
+<td><p>153.43Hz</p></td>
+<td><p>377.19Hz</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="running-the-experiment">
+<h3>Running the experiment<a class="headerlink" href="#running-the-experiment" title="Permalink to this headline">¶</a></h3>
+<p>Once the above has been defined, to run the experiment simply schedule the async functions to run in trio’s event loop.
+This eventloop will do two things simultaneously; continuously “read” the photo beam device to see when the photobeam
+is “broken” and execute the experiment’s stages:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">run_experiment</span><span class="p">():</span>
+    <span class="c1"># start the threading executor</span>
+    <span class="k">await</span> <span class="n">executor</span><span class="o">.</span><span class="n">start_executor</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">trio</span><span class="o">.</span><span class="n">open_nursery</span><span class="p">()</span> <span class="k">as</span> <span class="n">nursery</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">run_root_stage</span><span class="p">():</span>
+            <span class="c1"># run the experiment stages, but when done also cancel reading the devices</span>
+            <span class="k">await</span> <span class="n">root</span><span class="o">.</span><span class="n">run_stage</span><span class="p">()</span>
+            <span class="n">nursery</span><span class="o">.</span><span class="n">cancel_scope</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+
+        <span class="c1"># reads the photobeam device continuously</span>
+        <span class="n">nursery</span><span class="o">.</span><span class="n">start_soon</span><span class="p">(</span><span class="n">photo_bream_device</span><span class="o">.</span><span class="n">pump_state</span><span class="p">)</span>
+        <span class="c1"># runs the experiment stages</span>
+        <span class="n">nursery</span><span class="o">.</span><span class="n">start_soon</span><span class="p">(</span><span class="n">run_root_stage</span><span class="p">)</span>
+
+    <span class="c1"># we&#39;re done so we can stop the threading executor</span>
+    <span class="k">await</span> <span class="n">executor</span><span class="o">.</span><span class="n">stop_executor</span><span class="p">()</span>
+
+<span class="n">trio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">run_experiment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/api.html" class="btn btn-neutral float-right" title="The PyMoa API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Einhorn
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

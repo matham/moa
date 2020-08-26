@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Channel Devices &mdash; PyMoa  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Digital Port" href="digital.html" />
+    <link rel="prev" title="Device" href="device.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> PyMoa
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">The PyMoa API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pymoa.html">PyMoa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stage/api.html">PyMoa Stage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">PyMoa Device</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="device.html">Device</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Channel Devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="digital.html">Digital Port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analog.html">Analog Port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adc.html">ADC Device</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../base.html">Base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_logger.html">Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">Utilities</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyMoa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">The PyMoa API</a> &raquo;</li>
+        
+          <li><a href="api.html">PyMoa Device</a> &raquo;</li>
+        
+      <li>Channel Devices</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/device/port.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-pymoa.device.port"></span><div class="section" id="channel-devices">
+<h1>Channel Devices<a class="headerlink" href="#channel-devices" title="Permalink to this headline">¶</a></h1>
+<p>Some simple implementations of <a class="reference internal" href="device.html#pymoa.device.Device" title="pymoa.device.Device"><code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code></a>. See classes</p>
+<dl class="py class">
+<dt id="pymoa.device.port.Channel">
+<em class="property">class </em><code class="sig-prename descclassname">pymoa.device.port.</code><code class="sig-name descname">Channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.port.Channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pymoa.device.port.ChannelBase" title="pymoa.device.port.ChannelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymoa.device.port.ChannelBase</span></code></a></p>
+<p>Represents a device containing a single channel. E.g. a single analog
+i/o switch, a button, etc.</p>
+<p>For example a simple switch which does nothing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">kivy.properties</span> <span class="kn">import</span> <span class="n">BooleanProperty</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SimpleSwitch</span><span class="p">(</span><span class="n">Channel</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">state</span> <span class="o">=</span> <span class="n">BooleanProperty</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">allownone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switch</span> <span class="o">=</span> <span class="n">SimpleSwitch</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switch</span><span class="o">.</span><span class="n">state</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switch</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">switch</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">switch</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+<span class="go">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switch</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">switch</span><span class="o">.</span><span class="n">state</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pymoa.device.port.ChannelBase">
+<em class="property">class </em><code class="sig-prename descclassname">pymoa.device.port.</code><code class="sig-name descname">ChannelBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.port.ChannelBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="device.html#pymoa.device.Device" title="pymoa.device.Device"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymoa.device.Device</span></code></a></p>
+<p>A somewhat more concrete than
+<a class="reference internal" href="device.html#pymoa.device.Device" title="pymoa.device.Device"><code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code></a> base class for general input/output devices.</p>
+<p>Following is the typical expected structure of these devices. Each channel
+represents some kind of interaction with the world. E.g. it might represent
+digital input lines and output switches, multi-channel ADCs, or analog
+output channels. It might event represent the graphical state of buttons.</p>
+<p>For each of these channels in the device, the instance should contain a
+property representing the channel state. For example, a single digital
+channel, <a class="reference internal" href="digital.html#pymoa.device.digital.DigitalChannel" title="pymoa.device.digital.DigitalChannel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DigitalChannel</span></code></a>, contains a state
+variable indicating the state of the switch.</p>
+<p>From the outside, the property should be treated as read only. That is, if
+the channel controls a switch, one does not change
+<a class="reference internal" href="digital.html#pymoa.device.digital.DigitalChannel.state" title="pymoa.device.digital.DigitalChannel.state"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state</span></code></a> to cause a change in the
+state, rather one calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_state()</span></code>. Once <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_state()</span></code> changes
+the state, it is its responsibility to update the <cite>state</cite> variable and
+e.g. <code class="xref py py-attr docutils literal notranslate"><span class="pre">timestamp</span></code> and then emit a <cite>on_data_update</cite> event.</p>
+<p>Consequently, the pattern is for the device to update the state variables
+with every change to the device. From the outside, one calls
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">set_state()</span></code> to change the state and then reads (or listens to) the
+property or <cite>on_data_update</cite> to get the current state, including after a
+call to <code class="xref py py-meth docutils literal notranslate"><span class="pre">set_state()</span></code>.</p>
+<p>See <a class="reference internal" href="analog.html#module-pymoa.device.analog" title="pymoa.device.analog"><code class="xref py py-mod docutils literal notranslate"><span class="pre">analog</span></code></a> and <a class="reference internal" href="digital.html#module-pymoa.device.digital" title="pymoa.device.digital"><code class="xref py py-mod docutils literal notranslate"><span class="pre">digital</span></code></a> for example
+devices.</p>
+<dl class="py method">
+<dt id="pymoa.device.port.ChannelBase.read_state">
+<em class="property">await </em><code class="sig-name descname">read_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.port.ChannelBase.read_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>A abstract method causing a read of the state. This method should
+not return the state, but rather cause the device to read the state
+and update the appropriate instance property with the current state.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If supported, the method needs to be overwritten by a base class
+otherwise, it raises a <cite>NotImplementedError</cite>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymoa.device.port.ChannelBase.write_state">
+<em class="property">await </em><code class="sig-name descname">write_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.port.ChannelBase.write_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>A abstract method for setting the state. See <a class="reference internal" href="#pymoa.device.port.ChannelBase" title="pymoa.device.port.ChannelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChannelBase</span></code></a>
+for details.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If supported, the method needs to be overwritten by a base class
+otherwise, it raises a <cite>NotImplementedError</cite>.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pymoa.device.port.Port">
+<em class="property">class </em><code class="sig-prename descclassname">pymoa.device.port.</code><code class="sig-name descname">Port</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymoa.device.port.Port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pymoa.device.port.ChannelBase" title="pymoa.device.port.ChannelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymoa.device.port.ChannelBase</span></code></a></p>
+<p>Device similar to <a class="reference internal" href="#pymoa.device.port.Channel" title="pymoa.device.port.Channel"><code class="xref py py-class docutils literal notranslate"><span class="pre">Channel</span></code></a>, except this device represents
+one or more channels. E.g. a port with multiple digital lines, or a
+port of multiple buttons.</p>
+<p>Similar to <code class="xref py py-attr docutils literal notranslate"><span class="pre">Channel.state</span></code>, the expectation is that each channel or
+line will have a property associated with it. The name of the property
+is any valid name representing whatever is connected. For example, if there
+are 2 digital lines connected to a light and IR beam break, the two
+properties might be named <cite>light</cite>, and <cite>ir_beam</cite>. This allows checking
+their state simply with e.g. <cite>x.light</cite>.</p>
+<p>Although a port is commonly represented by e.g. a list of the state of each
+channel, in this implementation each channel gets an individual property.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">ChannelBase.reset_state</span></code> is True, then each of the channel
+properties must have <cite>allownone=True</cite>.</p>
+</div>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.properties</span> <span class="kn">import</span> <span class="n">BooleanProperty</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">DigitalPort</span><span class="p">(</span><span class="n">Port</span><span class="p">):</span>
+<span class="o">...</span>     <span class="n">photobeam</span> <span class="o">=</span> <span class="n">BooleanProperty</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">allownone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">light</span> <span class="o">=</span> <span class="n">BooleanProperty</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">allownone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">set_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="o">...</span>         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Setting line </span><span class="si">{}</span><span class="s1"> to </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attr_map</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">value</span><span class="p">))</span>
+<span class="o">...</span>         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># photobeam controls physical line 2 and the light line 5</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">port</span> <span class="o">=</span> <span class="n">DigitalPort</span><span class="p">(</span><span class="n">attr_map</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;photobeam&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;light&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">photobeam</span><span class="p">)</span>
+<span class="kc">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">port</span><span class="o">.</span><span class="n">chan_attr_map</span>
+<span class="p">{</span><span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;photobeam&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;light&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">port</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># already active so it won&#39;t be activated again</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">port</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+<span class="kc">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># reset_state is True, so the property is set None when activated</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">photobeam</span><span class="p">)</span>
+<span class="kc">None</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">port</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s1">&#39;photobeam&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">Setting</span> <span class="n">line</span> <span class="mi">2</span> <span class="n">to</span> <span class="kc">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">photobeam</span><span class="p">)</span>
+<span class="kc">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">port</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+<span class="kc">True</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt id="pymoa.device.port.Port.channel_names">
+<code class="sig-name descname">channel_names</code><em class="property">: List<span class="p">[</span>str<span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#pymoa.device.port.Port.channel_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of name of the channels of the port.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="digital.html" class="btn btn-neutral float-right" title="Digital Port" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="device.html" class="btn btn-neutral float-left" title="Device" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Einhorn
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
